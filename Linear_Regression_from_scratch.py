@@ -28,13 +28,17 @@ vectorized = True
 'Source: https://www.kaggle.com/mohansacharya/graduate-admissions?select=Admission_Predict.csv'
 df = pd.read_csv("Admission_predict.csv")
 df.drop(columns="Serial No.", inplace=True)
+
 # scaling input feature using min-max scaling
 scaled_cols = []
 for col in df :
+    col_minimum = min(df[col])
+    col_maximum = max(df[col])
     scaled_feature = []
     for i in range(len(df)) :
-        scaled_feature += [(df[col][i] - df[col].min()) / (df[col].max() - df[col].min())]
+        scaled_feature += [(df[col][i] - col_minimum) / (col_maximum - col_minimum)]
     scaled_cols += [scaled_feature]
+    
 # create df using all features
 d = {'gre_score': scaled_cols[0],
      'TOEFL Score': scaled_cols[1],
