@@ -15,12 +15,15 @@ import matplotlib.pyplot as plt
 df = pd.read_csv("citrus.csv")
 df['citrus'] = df['name'].map({'orange':1,'grapefruit':0}) 
 df.drop(columns='name',inplace=True)
+
 # scaling input feature using min-max scaling
 scaled_cols = []
 for col in df :
+    col_minimum = min(df[col])
+    col_maximum = max(df[col])
     scaled_feature = []
     for i in range(len(df)) :
-        scaled_feature += [(df[col][i] - df[col].min()) / (df[col].max() - df[col].min())]
+        scaled_feature += [(df[col][i] - col_minimum) / (col_maximum - col_minimum)]
     scaled_cols += [scaled_feature]
     
 # create df with scaled features
@@ -44,7 +47,7 @@ X_test = df3.iloc[:, :-1][:2000].values
 y_test = df3['citrus'][:2000].values
 
 # initialize useful variables for model training
-epochs = 5000
+epochs = 10000
 lr = 0.01
 # get total number of training examples
 m_train = len(X_train)
