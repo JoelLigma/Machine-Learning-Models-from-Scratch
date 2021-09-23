@@ -9,3 +9,6 @@ I will keep adding new files/ improvements whenever I have some time.
 
 **Logistic_regression_from_scratch.py**
 - Implemented a Logistic Regression model with a vectorized implementation of Gradient Descent from scratch
+
+**Decision_Tree.py**
+- Implemented a Decision Tree Classifier from scratch
