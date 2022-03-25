@@ -15,8 +15,7 @@ class K_Means:
     def fit_predict(self, X: np.array):
         self.X = X
         self.m = X.shape[0]
-        self.n = X.shape[1]
-
+  
         # randomly initialize examples from the input data as centroids
         rand_sample_indices = np.random.choice(a=self.m, size=self.c, replace=False)
         self.centroids = [self.X[i] for i in rand_sample_indices]
@@ -91,4 +90,4 @@ class K_Means:
         returns: bool
         """
         distances = [self.manhattan_distance(previous_centroids[i], centroids[i]) for i in range(self.c)]
-        return sum(distances) == threshold
+        return sum(distances) <= threshold
