@@ -12,3 +12,9 @@ I will keep adding new files/ improvements whenever I have some time.
 
 **Decision_Tree.py**
 - Implemented a Decision Tree Classifier from scratch
+
+**kmeans.py**
+- Implemented the K-means clustering algorithm from scratch
+
+**linear_algebra_ex01.py**
+- Implemented functions to compute the determinant of a matrix as well as the approximate eigenvector and dominant eigenvalue of a square matrix from scratch to reinforce my understanding
