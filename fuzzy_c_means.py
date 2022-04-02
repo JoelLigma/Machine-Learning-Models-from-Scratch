@@ -19,7 +19,7 @@ import numpy as np
 class Fuzzy_C_Means:
     def __init__(self, c=3, n_iter=100, threshold=0.001, m=2, random_state=127, dist_metric="Euclidean", mem_matrix=None):
         """
-        Parameters
+        Constraints
         ----------
         c: 2 <= c <= no. of rows
         m: fuzzy parameter >= 1
@@ -37,7 +37,7 @@ class Fuzzy_C_Means:
         self.X = X
         self.n_rows = X.shape[0]
         # check user inputs
-        self.check_inputs(self.m, self.c, self.n_rows)
+        self._check_inputs(self.m, self.c, self.n_rows)
 
         if isinstance(self.mem_matrix,(np.ndarray, np.generic)):
             print("Partition matrix provided.")
@@ -148,7 +148,7 @@ class Fuzzy_C_Means:
         centroids = np.array([np.divide(numerator[i], denominator[i]) for i in range(c)])
         return centroids
 
-    def check_inputs(self, m, c, n_rows):
+    def _check_inputs(self, m, c, n_rows):
         if m < 1:
             raise ValueError(f"The following value for m is not accepted: {m}. Please select a value >= 1.")
         elif c < 2:
