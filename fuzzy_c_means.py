@@ -75,12 +75,15 @@ class Fuzzy_C_Means:
         """
         
         row_wise_distances = np.empty((self.c, X.shape[0]))
-        if measure == "Euclidean":
+        if measure == "euclidean":
             for i,centroid in enumerate(centroids):
                  row_wise_distances[i] = np.sqrt(np.sum(np.power(np.subtract(X, centroid), 2), axis=1))
-        elif measure == "Manhattan":
+        elif measure == "manhattan":
              for i,centroid in enumerate(centroids):
                  row_wise_distances[i] = np.sum(np.abs(np.subtract(X, centroid)))
+        elif measure == "cosine":
+            for i,centroid in enumerate(centroids):
+                row_wise_distances[i] = 1 - np.dot(X, centroid)/(np.linalg.norm(X)*np.linalg.norm(centroid))
         else:
             raise ValueError(f"The following similarity measure is not supported: {measure}")
         return row_wise_distances
