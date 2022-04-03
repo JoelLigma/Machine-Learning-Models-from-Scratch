@@ -17,7 +17,7 @@ Please note:
 import numpy as np
 
 class Fuzzy_C_Means:
-    def __init__(self, c=3, n_iter=100, threshold=0.001, m=2, random_state=127, dist_metric="Euclidean", mem_matrix=None):
+    def __init__(self, c=3, n_iter=100, threshold=0.001, m=2, random_state=127, dist_metric="euclidean", mem_matrix=None):
         """
         Constraints
         ----------
@@ -135,6 +135,7 @@ class Fuzzy_C_Means:
         # the denominator will be of length == no. of clusters
         denominator = np.sum(raised_partition_matrix, axis=1)
         
+        # get the numerator
         numerator = []
         for i in range(c):
             temp = []
@@ -142,8 +143,6 @@ class Fuzzy_C_Means:
                 temp += [np.multiply(X.T[j], raised_partition_matrix[i]).sum()]
             numerator += [temp]
 
-        #print("Numerator:\n", numerator)
-        #print("Denominator:\n", denominator)
         # finally, compute the centroids: divide numerator arrays by denominator element
         centroids = np.array([np.divide(numerator[i], denominator[i]) for i in range(c)])
         return centroids
